@@ -4,36 +4,39 @@ using System.Text;
 
 namespace Properties
 {
-    public class Shape
+    public abstract class Shape
     {
         public string Name { get; set; }
         public Shape(string name)
         {
             Name = name;
         }
-        public double Area() { return 0.0; }
-        public double Perimeter() { return 0.0; }
+        public abstract double Area();
+        public abstract double Perimeter();
 
     }
 
-    public class Circle
+    public class Circle:Shape
     {
         private double radius;
 
         public double Radius
         {
             get { return radius; }
-            set { if(value>0) 
-                radius = value; }
+            set
+            {
+                if (value > 0)
+                    radius = value;
+            }
         }
 
-        public Circle(int r) { Radius = r; }
-        public double Area() { return Math.Pow(Radius,2)*Math.PI; }
-        public double Perimeter() { return 2*Math.PI*Radius; }
+        public Circle(int r, string name):base(name) { Radius = r; }
+        public override double Area() { return Math.Pow(Radius,2)*Math.PI; }
+        public override double Perimeter() { return 2*Math.PI*Radius; }
 
     }
     //Gooday Mate
-    public class Rectangle
+    public class Rectangle:Shape
     {
         private double length;
 
@@ -51,7 +54,7 @@ namespace Properties
             set { if(value>0)
                     width = value; }
         }
-        public Rectangle(double length,double width)
+        public Rectangle(double length,double width, string shapeName="Rectangle"):base(shapeName)
         {
             Length=length;
             Width = width;
@@ -66,7 +69,7 @@ namespace Properties
         //פעולה בונה של ריבוע 
         //מזמנת את הפעולה הבונה של ההורה (כדי ליצור ריבוע קודם צריך שיהיה
         //מלבן)
-        public Square(double length):base(length,length)
+        public Square(double length):base(length,length, "Square")
         {
 
         }
