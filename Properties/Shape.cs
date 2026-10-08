@@ -57,8 +57,8 @@ namespace Properties
             Width = width;
         }
 
-        public double Area() { return Length*Width; }
-        public double Perimeter() { return 2 * Length*Width; }
+        public override double Area() { return Length*Width; }
+        public override double Perimeter() { return 2 * Length*Width; }
     }
 
     public class Square : Rectangle
